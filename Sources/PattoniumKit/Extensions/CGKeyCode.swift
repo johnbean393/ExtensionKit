@@ -8,6 +8,7 @@
 import Foundation
 import CoreGraphics
 
+@available(macOS 12, *)
 extension CGKeyCode
 {
 	/*
