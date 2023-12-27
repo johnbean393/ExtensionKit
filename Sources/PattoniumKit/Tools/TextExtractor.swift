@@ -11,6 +11,7 @@ import Vision
 import os.log
 import NaturalLanguage
 
+#if os(macOS)
 class TextExtractor {
 	
 	enum ExtractionError: Error {
@@ -453,3 +454,4 @@ class TextExtractor {
 	}
 	
 }
+#endif
