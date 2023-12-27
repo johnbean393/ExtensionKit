@@ -23,11 +23,12 @@ enum AirDropError: Error {
 
 class FileSystemTools {
 	
+	#if os(macOS)
 	// Get "~/Desktop/" directory url
-	@available(macOS 12, *)
 	static func getDesktopUrl() -> URL {
 		return FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
 	}
+	#endif
 	
 	// Get "~/Downloads/" directory url
 	static func getDownloadsUrl() -> URL {
@@ -45,7 +46,7 @@ class FileSystemTools {
 	}
 	
 	// Open a panel for users to select a file
-	@available(macOS 12, *)
+	#if os(macOS)
 	static func openPanel(url: URL, files: Bool, folders: Bool, dialogTitle: String) throws -> URL {
 		// Select a file
 		let dialog = NSOpenPanel()
@@ -64,6 +65,7 @@ class FileSystemTools {
 		}
 		throw OpenPanelError.noSelection
 	}
+	#endif
 	
 	// Make a new directory
 	static func createDirectory(url: URL) {
@@ -179,7 +181,7 @@ class FileSystemTools {
 	}
 	
 	// Open directory in Finder
-	@available(macOS 12, *)
+	#if os(macOS)
 	static func openDirectory(url: URL) {
 		if #available(macOS 13.0, *) {
 			NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.path(percentEncoded: false))
@@ -187,9 +189,10 @@ class FileSystemTools {
 			NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.path.removingPercentEncoding!)
 		}
 	}
+	#endif
 	
 	// Open window to AirDrop a file
-	@available(macOS 12, *)
+	#if os(macOS)
 	static func airDropFiles(urls: [URL]) throws {
 		// Throw error if any file is non-existent
 		if urls.map({ $0.fileExists() }).contains(false) {
@@ -207,9 +210,10 @@ class FileSystemTools {
 			throw AirDropError.serviceError
 		}
 	}
+	#endif
 	
 	// Function to make alias
-	@available(macOS 12, *)
+	#if os(macOS)
 	public func makeAlias(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias") throws {
 		do {
 			let data: Data = try dirUrl.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
@@ -218,8 +222,10 @@ class FileSystemTools {
 			print(error)
 		}
 	}
+	#endif
 	
 	// Function to make alias with icon
+	#if os(macOS)
 	@available(macOS 14, *)
 	public func makeAliasWithIcon(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias", iconName: String) throws {
 		do {
@@ -230,5 +236,6 @@ class FileSystemTools {
 			print(error)
 		}
 	}
+	#endif
 	
 }

@@ -12,6 +12,7 @@ import DiskArbitration
 // MARK: - Helpers
 
 @available(macOS 12, *)
+#if os(macOS)
 extension DADisk {
 	
 	// The whole disk containing this one.
@@ -79,4 +80,4 @@ extension DADisk {
 		return CFUUIDCreateString(nil, cfUUID) as String?
 	}
 }
-
+#endif

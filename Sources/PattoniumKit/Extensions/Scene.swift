@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+#if os(macOS)
 extension Scene {
 	
 	@available(macOS 12, *)
@@ -38,3 +39,4 @@ extension Scene {
 	}
 	
 }
+#endif

@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 #endif
 
-@available(macOS 12, *)
+#if os(macOS)
 class CliTools {
 	
 	// Run a shell script
@@ -50,5 +50,5 @@ class CliTools {
 		exit(0)
 	}
 	
-	
 }
+#endif
