@@ -18,7 +18,7 @@ enum FileAttributesError: Error {
 extension URL {
 	
 	// Get posix path of URL
-	func posixPath() -> String {
+	public func posixPath() -> String {
 		if #available(macOS 13.0, iOS 16.0, macCatalyst 13.0, *) {
 			return self.path(percentEncoded: false)
 		} else {
@@ -26,7 +26,7 @@ extension URL {
 		}
 	}
 	
-	func containsItem(itemUrl: URL) -> Bool {
+	public func containsItem(itemUrl: URL) -> Bool {
 		// Do checks
 		let fileExists: Bool = FileManager.default.fileExists(atPath: itemUrl.posixPath())
 		let dirContains: Bool = itemUrl.posixPath().hasPrefix(self.posixPath())
@@ -35,7 +35,7 @@ extension URL {
 	}
 	
 	// List URLs of files in directory
-	func listDirectory() throws -> [URL] {
+	public func listDirectory() throws -> [URL] {
 		let url: URL = self
 		// Throw error if URL is not directory
 		if url.hasDirectoryPath {
@@ -47,7 +47,7 @@ extension URL {
 		}
 	}
 	
-	func lastModifiedDate() throws -> Date {
+	public func lastModifiedDate() throws -> Date {
 		do {
 			let attributes: [FileAttributeKey:Any] = try FileManager.default.attributesOfItem(atPath: self.posixPath())
 			return (attributes[FileAttributeKey.modificationDate] as? Date)!
@@ -57,7 +57,7 @@ extension URL {
 	}
 	
 	// Calculate size of directory
-	func directorySize() -> Int64 {
+	public func directorySize() -> Int64 {
 		let contents: [URL]
 		do {
 			contents = try FileManager.default.contentsOfDirectory(at: self, includingPropertiesForKeys: [.fileSizeKey, .isDirectoryKey])
@@ -88,7 +88,7 @@ extension URL {
 	}
 	
 	// Check if file exists
-	func fileExists() -> Bool {
+	public func fileExists() -> Bool {
 		return FileManager.default.fileExists(atPath: self.posixPath())
 	}
 	
@@ -118,7 +118,7 @@ extension URL {
 	}
 	
 	// Check if the URL is a directory and if it is reachable
-	func isDirectoryAndReachable() throws -> Bool {
+	public func isDirectoryAndReachable() throws -> Bool {
 		guard try resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true else {
 			return false
 		}
@@ -126,7 +126,7 @@ extension URL {
 	}
 	
 	// Returns total allocated size of a directory including its subfolders or not
-	func directoryTotalAllocatedSize(includingSubfolders: Bool = false) throws -> Int? {
+	public func directoryTotalAllocatedSize(includingSubfolders: Bool = false) throws -> Int? {
 		guard try isDirectoryAndReachable() else { return nil }
 		if includingSubfolders {
 			guard

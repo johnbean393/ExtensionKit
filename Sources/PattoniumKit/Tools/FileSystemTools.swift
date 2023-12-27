@@ -208,7 +208,7 @@ class FileSystemTools {
 	
 	// Function to make alias
 	@available(macOS 12, *)
-	func makeAlias(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias") throws {
+	public func makeAlias(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias") throws {
 		do {
 			let data: Data = try dirUrl.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
 			try URL.writeBookmarkData(data, to: atUrl.appendingPathComponent(aliasName))
@@ -219,7 +219,7 @@ class FileSystemTools {
 	
 	// Function to make alias with icon
 	@available(macOS 14, *)
-	func makeAliasWithIcon(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias", iconName: String) throws {
+	public func makeAliasWithIcon(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias", iconName: String) throws {
 		do {
 			let data: Data = try dirUrl.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
 			try URL.writeBookmarkData(data, to: atUrl.appendingPathComponent(aliasName))

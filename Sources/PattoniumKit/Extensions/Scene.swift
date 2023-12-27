@@ -11,7 +11,7 @@ import SwiftUI
 extension Scene {
 	
 	@available(macOS 12, *)
-	func windowResizabilityContentSize() -> some Scene {
+	public func windowResizabilityContentSize() -> some Scene {
 		if #available(macOS 13.0, *) {
 			return windowResizability(.contentSize)
 		} else {
@@ -20,7 +20,7 @@ extension Scene {
 	}
 	
 	@available(macOS 12, *)
-	func defaultPositionTopLeading() -> some Scene {
+	public func defaultPositionTopLeading() -> some Scene {
 		if #available(macOS 13.0, *) {
 			return defaultPosition(.topLeading)
 		} else {
@@ -29,7 +29,7 @@ extension Scene {
 	}
 	
 	@available(macOS 12, *)
-	func defaultPositionCenter() -> some Scene {
+	public func defaultPositionCenter() -> some Scene {
 		if #available(macOS 13.0, *) {
 			return defaultPosition(.center)
 		} else {

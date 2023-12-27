@@ -18,7 +18,7 @@ extension String {
 		return CharacterSet(charactersIn: self).isSubset(of: digitsCharacters)
 	}
 	
-	func index(_ i: Int) -> String.Index {
+	public func index(_ i: Int) -> String.Index {
 		if i >= 0 {
 			return self.index(self.startIndex, offsetBy: i)
 		} else {
@@ -38,12 +38,12 @@ extension String {
 		return String(self[index(r.lowerBound)..<index(r.upperBound)])
 	}
 	
-	func wildcard(pattern: String) -> Bool {
+	public func wildcard(pattern: String) -> Bool {
 		let pred = NSPredicate(format: "self LIKE %@", pattern)
 		return !NSArray(object: self).filtered(using: pred).isEmpty
 	}
 	
-	func strDominantLanguage() throws -> String {
+	public func strDominantLanguage() throws -> String {
 		if let language = NSLinguisticTagger.dominantLanguage(for: self) {
 			return language
 		}
@@ -55,7 +55,7 @@ extension String {
 	// Reference <https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance#endnote_itman#Distance_with_adjacent_transpositions>
 	// - Parameter target: The target `String`.
 	// - Returns: The Damerau-Levenshtein distance between the receiver and `target`.
-	func distanceDamerauLevenshtein(between target: String) -> Int {
+	public func distanceDamerauLevenshtein(between target: String) -> Int {
 		let selfCount = self.count
 		let targetCount = target.count
 		
@@ -126,7 +126,7 @@ extension String {
 	// Reference <https://en.wikipedia.org/wiki/Hamming_distance>.
 	// - Parameter target: The target `String`.
 	// - Returns: The Hamming distance between the receiver and `target`.
-	func distanceHamming(between target: String) -> Int {
+	public func distanceHamming(between target: String) -> Int {
 		assert(self.count == target.count)
 		
 		return zip(self, target).filter { $0 != $1 }.count
@@ -139,7 +139,7 @@ extension String {
 	// Reference <https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance>
 	// - Parameter target: The target `String`.
 	// - Returns: The Jaro-Winkler distance between the receiver and `target`.
-	func distanceJaroWinkler(between target: String) -> Double {
+	public func distanceJaroWinkler(between target: String) -> Double {
 		var stringOne = self
 		var stringTwo = target
 		if stringOne.count > stringTwo.count {
@@ -195,7 +195,7 @@ extension String {
 	// Reference <https://en.wikipedia.org/wiki/Levenshtein_distance#Iterative_with_two_matrix_rows>
 	// - Parameter target: The target `String`.
 	// - Returns: The Levenshtein distance between the receiver and `target`.
-	func distanceLevenshtein(between target: String) -> Int {
+	public func distanceLevenshtein(between target: String) -> Int {
 		let selfCount = self.count
 		let targetCount = target.count
 		
@@ -251,7 +251,7 @@ extension String {
 	//   - target: The target `String`.
 	//   - K: The number of most frequently occuring characters to use for the similarity comparison.
 	//   - maxDistance: The maximum distance limit (defaults to a value of 10 if not provided).
-	func distanceMostFreqK(between target: String, K: Int, maxDistance: Int = 10) -> Int {
+	public func distanceMostFreqK(between target: String, K: Int, maxDistance: Int = 10) -> Int {
 		return maxDistance - mostFrequentKSimilarity(characterFrequencyHashOne: self.mostFrequentKHashing(K),
 													 characterFrequencyHashTwo: target.mostFrequentKHashing(K))
 	}
@@ -265,7 +265,7 @@ extension String {
 	//   - target: The target `String`.
 	//   - k: The number of most frequently occuring characters to use for the similarity comparison.
 	// - Returns: The normalized most frequent K distance between the receiver and `target`.
-	func distanceNormalizedMostFrequentK(between target: String, k: Int) -> Double {
+	public func distanceNormalizedMostFrequentK(between target: String, k: Int) -> Double {
 		let selfMostFrequentKHash = self.mostFrequentKHashing(k)
 		let targetMostFrequentKHash = target.mostFrequentKHashing(k)
 		let commonCharacters = Set(selfMostFrequentKHash.keys).intersection(Set(targetMostFrequentKHash.keys))
@@ -290,7 +290,7 @@ extension String {
 	// - Parameters:
 	//   - k: The maximum number of character-frequency pairs to include in the returned hash.
 	// - Returns: a `Dictionary` hash of the most frequent characters in the receiver.
-	func mostFrequentKHashing(_ k: Int) -> [Character: Int] {
+	public func mostFrequentKHashing(_ k: Int) -> [Character: Int] {
 		let characterFrequencies = self.reduce(into: [Character: Int]()) { characterFrequencies, character in
 			characterFrequencies[character] = (characterFrequencies[character] ?? 0) + 1
 		}
@@ -314,7 +314,7 @@ extension String {
 	// - Parameters:
 	//   - characterFrequencyHashOne: a `Dictionary` hash returned from `mostFrequentKHashing(_ k: Int)` for a particular `String`.
 	//   - characterFrequencyHashTwo: a `Dictionary` hash returned from `mostFrequentKHashing(_ k: Int)` for a different `String`.
-	func mostFrequentKSimilarity(characterFrequencyHashOne: [Character: Int], characterFrequencyHashTwo: [Character: Int]) -> Int {
+	public func mostFrequentKSimilarity(characterFrequencyHashOne: [Character: Int], characterFrequencyHashTwo: [Character: Int]) -> Int {
 		
 		let commonCharacters = Set(characterFrequencyHashOne.keys).intersection(Set(characterFrequencyHashTwo.keys))
 		

@@ -10,7 +10,7 @@ import Foundation
 extension Array {
 	
 	// Map array with multithreading
-	func parallelMap<T>(_ transform: (Element) -> T) -> [T] {
+	public func parallelMap<T>(_ transform: (Element) -> T) -> [T] {
 		var result = Array<T?>(repeating: nil, count: count)
 		let queue = DispatchQueue(label: "com.pattonium.scripts.parallelMap", attributes: .concurrent)
 		

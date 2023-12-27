@@ -12,7 +12,7 @@ extension Color {
 	
 	// Get intermediate color
 	@available(macOS 14, iOS 17, *)
-	func incrementColor(toColor: Color, percentage: Float) -> Color {
+	public func incrementColor(toColor: Color, percentage: Float) -> Color {
 		let environment = EnvironmentValues()
 		let redDiff: Float = (toColor.resolve(in: environment).red - self.resolve(in: environment).red) * percentage
 		let greenDiff: Float = (toColor.resolve(in: environment).green - self.resolve(in: environment).green) * percentage
