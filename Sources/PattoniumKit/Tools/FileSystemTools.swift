@@ -105,6 +105,7 @@ class FileSystemTools {
 		}
 	}
 	
+	#if os(macOS)
 	static func moveFileWithReplace(fromUrl: URL, toUrl: URL) -> Bool {
 		// Move file to destination url
 		do {
@@ -140,6 +141,7 @@ class FileSystemTools {
 		}
 		return true
 	}
+	#endif
 	
 	static func copyFile(fromUrl: URL, toUrl: URL) {
 		// Move file to destination url
@@ -151,6 +153,7 @@ class FileSystemTools {
 		}
 	}
 	
+	#if os(macOS)
 	static func copyFileWithReplace(fromUrl: URL, toUrl: URL, filename: String) async -> Bool {
 		// Move file to destination url
 		do {
@@ -179,6 +182,7 @@ class FileSystemTools {
 		}
 		return false
 	}
+	#endif
 	
 	// Open directory in Finder
 	#if os(macOS)
