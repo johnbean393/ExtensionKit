@@ -17,6 +17,7 @@ enum FileAttributesError: Error {
 
 extension URL {
 	
+	// Get posix path of URL
 	func posixPath() -> String {
 		if #available(macOS 13.0, iOS 16.0, macCatalyst 13.0, *) {
 			return self.path(percentEncoded: false)
@@ -89,6 +90,55 @@ extension URL {
 	// Check if file exists
 	func fileExists() -> Bool {
 		return FileManager.default.fileExists(atPath: self.posixPath())
+	}
+	
+	// Total capacity of a volume
+	var volumeTotalCapacity: Int {
+		(try? resourceValues(forKeys: [.volumeTotalCapacityKey]))?.volumeTotalCapacity ?? 0
+	}
+	
+	// Total capacity of a volume for important usage
+	var volumeAvailableCapacityForImportantUsage: Int64 {
+		(try? resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey]))?.volumeAvailableCapacityForImportantUsage ?? 0
+	}
+	
+	// Total capacity of a volume for not too important usage
+	var volumeAvailableCapacityForOpportunisticUsage: Int64 {
+		(try? resourceValues(forKeys: [.volumeAvailableCapacityForOpportunisticUsageKey]))?.volumeAvailableCapacityForOpportunisticUsage ?? 0
+	}
+	
+	// Name of a volume
+	var name: String {
+		(try? resourceValues(forKeys: [.nameKey]))?.name ?? "null"
+	}
+	
+	// Name of a volume
+	var volumeName: String {
+		(try? resourceValues(forKeys: [.volumeNameKey]))?.volumeName ?? "null"
+	}
+	
+	// Check if the URL is a directory and if it is reachable
+	func isDirectoryAndReachable() throws -> Bool {
+		guard try resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true else {
+			return false
+		}
+		return try checkResourceIsReachable()
+	}
+	
+	// Returns total allocated size of a directory including its subfolders or not
+	func directoryTotalAllocatedSize(includingSubfolders: Bool = false) throws -> Int? {
+		guard try isDirectoryAndReachable() else { return nil }
+		if includingSubfolders {
+			guard
+				let urls = FileManager.default.enumerator(at: self, includingPropertiesForKeys: nil)?.allObjects as? [URL] else { return nil }
+			return try urls.lazy.reduce(0) {
+				(try $1.resourceValues(forKeys: [.totalFileAllocatedSizeKey]).totalFileAllocatedSize ?? 0) + $0
+			}
+		}
+		return try FileManager.default.contentsOfDirectory(at: self, includingPropertiesForKeys: nil).lazy.reduce(0) {
+			(try $1.resourceValues(forKeys: [.totalFileAllocatedSizeKey])
+				.totalFileAllocatedSize ?? 0) + $0
+		}
 	}
 	
 }

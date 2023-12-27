@@ -206,4 +206,27 @@ class FileSystemTools {
 		}
 	}
 	
+	// Function to make alias
+	@available(macOS 12, *)
+	func makeAlias(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias") throws {
+		do {
+			let data: Data = try dirUrl.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
+			try URL.writeBookmarkData(data, to: atUrl.appendingPathComponent(aliasName))
+		} catch {
+			print(error)
+		}
+	}
+	
+	// Function to make alias with icon
+	@available(macOS 14, *)
+	func makeAliasWithIcon(dirUrl: URL, atUrl: URL, aliasName: String = "New Alias", iconName: String) throws {
+		do {
+			let data: Data = try dirUrl.bookmarkData(options: [URL.BookmarkCreationOptions.suitableForBookmarkFile], includingResourceValuesForKeys: nil, relativeTo: nil)
+			try URL.writeBookmarkData(data, to: atUrl.appendingPathComponent(aliasName))
+			NSWorkspace.shared.setIcon(NSImage(resource: ImageResource(name: iconName, bundle: Bundle.main)), forFile: atUrl.appendingPathComponent(aliasName).posixPath())
+		} catch {
+			print(error)
+		}
+	}
+	
 }
