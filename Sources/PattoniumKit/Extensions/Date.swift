@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
 	
-	static func - (lhs: Date, rhs: Date) -> TimeInterval {
+	static public func - (lhs: Date, rhs: Date) -> TimeInterval {
 		return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
 	}
 	

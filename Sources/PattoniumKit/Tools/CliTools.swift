@@ -11,10 +11,10 @@ import AppKit
 #endif
 
 #if os(macOS)
-class CliTools {
+public class CliTools {
 	
 	// Run a shell script
-	static func runCommand(command: String) -> String {
+	static public func runCommand(command: String) -> String {
 		let task = Process()
 		task.launchPath = "/bin/zsh"
 		task.arguments = ["-c", command]
@@ -30,7 +30,7 @@ class CliTools {
 	}
 	
 	// Run an AppleScript
-	static func runAppleScript(scriptStr: String) {
+	static public func runAppleScript(scriptStr: String) {
 		if let script = NSAppleScript(source: scriptStr) {
 			var error: NSDictionary?
 			script.executeAndReturnError(&error)
@@ -40,7 +40,7 @@ class CliTools {
 		}
 	}
 	
-	static func relaunch(afterDelay seconds: TimeInterval = 5) -> Never {
+	static public func relaunch(afterDelay seconds: TimeInterval = 5) -> Never {
 		let task = Process()
 		task.launchPath = "/bin/zsh"
 		task.arguments = ["-c", "sleep \(seconds); open \"\(Bundle.main.bundlePath)\""]

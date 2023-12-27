@@ -7,16 +7,16 @@
 
 import Foundation
 
-class ProcessorTools {
+public class ProcessorTools {
 	
 	// Check if processor is arm64
-	static func isArmProcessor() -> Bool {
+	static public func isArmProcessor() -> Bool {
 		let cpuArchitecture: String = ProcessInfo.processInfo.machineHardwareName ?? "null"
 		return cpuArchitecture == "arm64"
 	}
 	
 	// Get processor core count
-	static func getCoreCount() -> Int {
+	static public func getCoreCount() -> Int {
 		if isArmProcessor() {
 			// Return core count
 			return ProcessInfo.processInfo.processorCount

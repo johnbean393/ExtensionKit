@@ -12,14 +12,14 @@ import os.log
 import NaturalLanguage
 
 #if os(macOS)
-class TextExtractor {
+public class TextExtractor {
 	
 	enum ExtractionError: Error {
 		case decodeError
 		case unknownFormat
 	}
 	
-	static func extractText(url: URL) async throws -> String {
+	static public func extractText(url: URL) async throws -> String {
 		// Define result variable
 		var extractedText = ""
 		// Detect file type and decode format
@@ -423,7 +423,7 @@ class TextExtractor {
 		}
 	}
 	
-	static func extractFromNSImage(nsImage: NSImage) throws -> String {
+	static public func extractFromNSImage(nsImage: NSImage) throws -> String {
 		do {
 			var resultText: String = ""
 			// build the request handler and perform the request
@@ -447,7 +447,7 @@ class TextExtractor {
 		}
 	}
 	
-	static func isRecognizedImage(url: URL) -> Bool {
+	static public func isRecognizedImage(url: URL) -> Bool {
 		// Check if the image is in a recognized format
 		let recognizedExtensions: [String] = ["png", "bmp", "jpg", "jpeg", "tiff", "webp", "heic"]
 		return recognizedExtensions.contains(url.pathExtension)

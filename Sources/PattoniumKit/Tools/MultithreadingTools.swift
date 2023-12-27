@@ -7,10 +7,10 @@
 
 import Foundation
 
-class MultithreadingTools {
+public class MultithreadingTools {
 	
 	// Loop through array and execute actions for each concurrently
-	static func parallelForEach(array: Array<Any>, action: (_ currElement: Any) -> Void) {
+	static public func parallelForEach(array: Array<Any>, action: (_ currElement: Any) -> Void) {
 		DispatchQueue.concurrentPerform(iterations: array.count) { index in
 			let currElement: Any = array[index]
 			action(currElement)

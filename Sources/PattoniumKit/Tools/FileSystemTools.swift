@@ -21,33 +21,33 @@ enum AirDropError: Error {
 	case serviceError
 }
 
-class FileSystemTools {
+public class FileSystemTools {
 	
 	#if os(macOS)
 	// Get "~/Desktop/" directory url
-	static func getDesktopUrl() -> URL {
+	static public func getDesktopUrl() -> URL {
 		return FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
 	}
 	#endif
 	
 	// Get "~/Downloads/" directory url
-	static func getDownloadsUrl() -> URL {
+	static public func getDownloadsUrl() -> URL {
 		return FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0]
 	}
 	
 	// Get "~/Documents/" directory url
-	static func getDocumentsUrl() -> URL {
+	static public func getDocumentsUrl() -> URL {
 		return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 	}
 	
 	// Get "~/Library/Application Support/" directory url
-	static func getAppSupportDirUrl() -> URL {
+	static public func getAppSupportDirUrl() -> URL {
 		return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
 	}
 	
 	// Open a panel for users to select a file
 	#if os(macOS)
-	static func openPanel(url: URL, files: Bool, folders: Bool, dialogTitle: String) throws -> URL {
+	static public func openPanel(url: URL, files: Bool, folders: Bool, dialogTitle: String) throws -> URL {
 		// Select a file
 		let dialog = NSOpenPanel()
 		dialog.directoryURL = url
@@ -68,7 +68,7 @@ class FileSystemTools {
 	#endif
 	
 	// Make a new directory
-	static func createDirectory(url: URL) {
+	static public func createDirectory(url: URL) {
 		var dirPath: String = ""
 		if #available(macOS 13.0, iOS 16.0, macCatalyst 13.0, *) {
 			dirPath = url.path(percentEncoded: false)
@@ -85,7 +85,7 @@ class FileSystemTools {
 	}
 	
 	// List contents in a directory
-	static func listDirectory(dirUrl: URL) -> [URL] {
+	static public func listDirectory(dirUrl: URL) -> [URL] {
 		do {
 			let dirContents: [URL] = try FileManager.default.contentsOfDirectory(at: dirUrl, includingPropertiesForKeys: [])
 			let filteredDirContents: [URL] = dirContents.filter { !$0.lastPathComponent.hasPrefix(".") && !$0.lastPathComponent.hasPrefix("~$") }
@@ -95,7 +95,7 @@ class FileSystemTools {
 		}
 	}
 	
-	static func moveFile(fromUrl: URL, toUrl: URL) {
+	static public func moveFile(fromUrl: URL, toUrl: URL) {
 		// Move file to toUrl
 		do {
 			// Move file
@@ -106,7 +106,7 @@ class FileSystemTools {
 	}
 	
 	#if os(macOS)
-	static func moveFileWithReplace(fromUrl: URL, toUrl: URL) -> Bool {
+	static public func moveFileWithReplace(fromUrl: URL, toUrl: URL) -> Bool {
 		// Move file to destination url
 		do {
 			// If file doesn't exist at final path
@@ -143,7 +143,7 @@ class FileSystemTools {
 	}
 	#endif
 	
-	static func copyFile(fromUrl: URL, toUrl: URL) {
+	static public func copyFile(fromUrl: URL, toUrl: URL) {
 		// Move file to destination url
 		do {
 			// Move file
@@ -154,7 +154,7 @@ class FileSystemTools {
 	}
 	
 	#if os(macOS)
-	static func copyFileWithReplace(fromUrl: URL, toUrl: URL, filename: String) async -> Bool {
+	static public func copyFileWithReplace(fromUrl: URL, toUrl: URL, filename: String) async -> Bool {
 		// Move file to destination url
 		do {
 			// If file doesn't exist at final path
@@ -186,7 +186,7 @@ class FileSystemTools {
 	
 	// Open directory in Finder
 	#if os(macOS)
-	static func openDirectory(url: URL) {
+	static public func openDirectory(url: URL) {
 		if #available(macOS 13.0, *) {
 			NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.path(percentEncoded: false))
 		} else {
@@ -197,7 +197,7 @@ class FileSystemTools {
 	
 	// Open window to AirDrop a file
 	#if os(macOS)
-	static func airDropFiles(urls: [URL]) throws {
+	static public func airDropFiles(urls: [URL]) throws {
 		// Throw error if any file is non-existent
 		if urls.map({ $0.fileExists() }).contains(false) {
 			throw AirDropError.fileMissing

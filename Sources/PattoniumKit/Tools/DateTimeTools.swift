@@ -7,10 +7,10 @@
 
 import Foundation
 
-class DateTimeTools {
+public class DateTimeTools {
 	
 	// Convert the date to a string showing the time
-	static func formatDateAsTime(date: Date) -> String {
+	static public func formatDateAsTime(date: Date) -> String {
 		let timeFormat = "HH:mm"
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = timeFormat // customize the date format here
@@ -18,7 +18,7 @@ class DateTimeTools {
 	}
 	
 	// Convert the date to a string with a month, date and year
-	static func formatDateAsUnderscoredString(date: Date) -> String {
+	static public func formatDateAsUnderscoredString(date: Date) -> String {
 		var dateFormatOn: Bool = false
 		if let dateFormatStr = UserDefaults.standard.string(forKey: "dateFormatOn") {
 			dateFormatOn = !(dateFormatStr == "false")
