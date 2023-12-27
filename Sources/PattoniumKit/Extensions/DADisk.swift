@@ -9,6 +9,7 @@ import DiskArbitration
 
 // MARK: - Helpers
 
+@available(macOS 12, *)
 extension DADisk {
 	
 	// The whole disk containing this one.
