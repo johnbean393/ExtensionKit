@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-@available(macOS 12, *)
+#if os(macOS)
 extension CGKeyCode
 {
 	/*
@@ -193,3 +193,5 @@ extension CGKeyCode
 //	}
 //	return event
 //}
+
+#endif
