@@ -5,7 +5,9 @@
 //  Created by Bean John on 27/12/2023.
 //
 
+#if canImport(DiskArbitration)
 import DiskArbitration
+#endif
 
 // MARK: - Helpers
 
