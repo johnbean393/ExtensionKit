@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if canImport(AppKit)
 import AppKit
+#endif
 import os.log
 
 enum OpenPanelError: Error {

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if canImport(AppKit)
 import AppKit
+#endif
 
 @available(macOS 12, *)
 class CliTools {
