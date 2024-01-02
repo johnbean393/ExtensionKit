@@ -8,7 +8,7 @@ To install **ExtensionKit**, simply add it as a dependency to your Swift project
 
 `File` → `Add Packages...` → `Search or Enter Package Url` → `https://github.com/johnbean393/ExtensionKit.git`
 
-# Usage (Non-exhaustive)
+# Usage(Non-exhaustive)
 
 To use ExtensionKit in your project, first import the framework:
 ```Swift
