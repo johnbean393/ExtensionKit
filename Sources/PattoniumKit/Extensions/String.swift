@@ -13,9 +13,21 @@ enum LanguageError: Error {
 
 extension String {
 	
-	var isNumber: Bool {
+	public var isNumber: Bool {
 		let digitsCharacters = CharacterSet(charactersIn: "0123456789")
 		return CharacterSet(charactersIn: self).isSubset(of: digitsCharacters)
+	}
+	
+	public var lines: [String] {
+		return self.components(separatedBy: .newlines)
+	}
+	
+	public func camelCaseToWords() -> String {
+		return self
+			.replacingOccurrences(of: "([a-z])([A-Z](?=[A-Z])[a-z]*)", with: "$1 $2", options: .regularExpression)
+			.replacingOccurrences(of: "([A-Z])([A-Z][a-z])", with: "$1 $2", options: .regularExpression)
+			.replacingOccurrences(of: "([a-z])([A-Z][a-z])", with: "$1 $2", options: .regularExpression)
+			.replacingOccurrences(of: "([a-z])([A-Z][a-z])", with: "$1 $2", options: .regularExpression)
 	}
 	
 	public func index(_ i: Int) -> String.Index {
@@ -26,7 +38,7 @@ extension String {
 		}
 	}
 	
-	subscript(i: Int) -> Character? {
+	public subscript(i: Int) -> Character? {
 		if i >= count || i < -count {
 			return nil
 		}
@@ -34,7 +46,7 @@ extension String {
 		return self[index(i)]
 	}
 	
-	subscript(r: Range<Int>) -> String {
+	public subscript(r: Range<Int>) -> String {
 		return String(self[index(r.lowerBound)..<index(r.upperBound)])
 	}
 	
