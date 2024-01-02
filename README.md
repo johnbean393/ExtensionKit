@@ -90,9 +90,9 @@ print(camelCase.camelCaseToWords()) // "Pattonium Kit Is The Best"
 func wildcard(pattern: String) -> Bool
 
 // Example usage
-print("201.93.92.123".wildcard("201.93.9[23].???")) // true
-print("201.93.93.001".wildcard("201.93.9[23].???")) // true
-print("docs.github.com".wildcard("*.github.com")) // true
+print("201.93.92.123".wildcard(pattern: "201.93.9[23].???")) // true
+print("201.93.93.001".wildcard(pattern: "201.93.9[23].???")) // true
+print("docs.github.com".wildcard(pattern: "*.github.com")) // true
 
 // Identify dominant language
 func strDominantLanguage() throws -> String
