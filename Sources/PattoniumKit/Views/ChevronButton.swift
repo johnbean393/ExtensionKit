@@ -24,6 +24,7 @@ public struct ChevronButton: View {
 					.shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
 					.foregroundStyle(Color.white)
 			}
+			.border(Color.black)
 	}
 	
 }

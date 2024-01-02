@@ -47,6 +47,7 @@ extension URL {
 		}
 	}
 	
+	// Get last modified date of file
 	public func lastModifiedDate() throws -> Date {
 		do {
 			let attributes: [FileAttributeKey:Any] = try FileManager.default.attributesOfItem(atPath: self.posixPath())
@@ -93,27 +94,27 @@ extension URL {
 	}
 	
 	// Total capacity of a volume
-	var volumeTotalCapacity: Int {
+	public var volumeTotalCapacity: Int {
 		(try? resourceValues(forKeys: [.volumeTotalCapacityKey]))?.volumeTotalCapacity ?? 0
 	}
 	
 	// Total capacity of a volume for important usage
-	var volumeAvailableCapacityForImportantUsage: Int64 {
+	public var volumeAvailableCapacityForImportantUsage: Int64 {
 		(try? resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey]))?.volumeAvailableCapacityForImportantUsage ?? 0
 	}
 	
 	// Total capacity of a volume for not too important usage
-	var volumeAvailableCapacityForOpportunisticUsage: Int64 {
+	public var volumeAvailableCapacityForOpportunisticUsage: Int64 {
 		(try? resourceValues(forKeys: [.volumeAvailableCapacityForOpportunisticUsageKey]))?.volumeAvailableCapacityForOpportunisticUsage ?? 0
 	}
 	
 	// Name of a volume
-	var name: String {
+	public var name: String {
 		(try? resourceValues(forKeys: [.nameKey]))?.name ?? "null"
 	}
 	
 	// Name of a volume
-	var volumeName: String {
+	public var volumeName: String {
 		(try? resourceValues(forKeys: [.volumeNameKey]))?.volumeName ?? "null"
 	}
 	

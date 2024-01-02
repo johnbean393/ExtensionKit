@@ -40,6 +40,7 @@ public class CliTools {
 		}
 	}
 	
+	// Relaunch app
 	static public func relaunch(afterDelay seconds: TimeInterval = 5) -> Never {
 		let task = Process()
 		task.launchPath = "/bin/zsh"

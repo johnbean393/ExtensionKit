@@ -84,7 +84,7 @@ public class FileSystemTools {
 		}
 	}
 	
-	// List contents in a directory
+	// List contents of a directory
 	static public func listDirectory(dirUrl: URL) -> [URL] {
 		do {
 			let dirContents: [URL] = try FileManager.default.contentsOfDirectory(at: dirUrl, includingPropertiesForKeys: [])
