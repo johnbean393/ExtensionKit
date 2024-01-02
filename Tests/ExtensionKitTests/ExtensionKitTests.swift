@@ -1,7 +1,7 @@
 import XCTest
-@testable import PattoniumKit
+@testable import ExtensionKit
 
-final class PattoniumKitTests: XCTestCase {
+final class ExtensionKitTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

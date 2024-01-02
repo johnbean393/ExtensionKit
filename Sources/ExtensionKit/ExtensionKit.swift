@@ -1,7 +1,7 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-struct PattoniumKit {
+struct ExtensionKit {
 	
 	var message: String = "Hello, World!"
 	

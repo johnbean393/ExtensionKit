@@ -1,18 +1,18 @@
-# PattoniumKit
+# ExtensionKit
 
-**PattoniumKit** is a Swift Package with additional functionality for Swift and SwiftUI.
+**ExtensionKit** is a Swift Package with additional functionality for Swift and SwiftUI.
 
 # Installation
 
-To install **PattoniumKit**, simply add it as a dependency to your Swift project using the Swift Package Manager. I recommend using the Xcode method personally via:
+To install **ExtensionKit**, simply add it as a dependency to your Swift project using the Swift Package Manager. I recommend using the Xcode method personally via:
 
-`File` → `Add Packages...` → `Search or Enter Package Url` → `https://github.com/johnbean393/PattoniumKit.git`
+`File` → `Add Packages...` → `Search or Enter Package Url` → `https://github.com/johnbean393/ExtensionKit.git`
 
 # Usage (Non-exhaustive)
 
-To use PattoniumKit in your project, first import the framework:
+To use ExtensionKit in your project, first import the framework:
 ```Swift
-import PattoniumKit
+import ExtensionKit
 ```
 
 ### Array
@@ -29,7 +29,7 @@ func incrementColor(toColor: Color, percentage: Float) -> Color
 // Example usage
 let color: Color = Color.red.incrementColor(toColor: .green, percentage: 0.5) // Gives 50-50 mix between the colors red and green
 ```
-When PattoniumKit is imported, Color automatically conforms to `Codable`
+When ExtensionKit is imported, Color automatically conforms to `Codable`
 
 ### Date
 ```Swift
@@ -83,7 +83,7 @@ var lines: [String]
 func camelCaseToWords() -> String
 
 // Example usage
-let camelCase: String = "pattoniumKitIsTheBest"
+let camelCase: String = "ExtensionKitIsTheBest"
 print(camelCase.camelCaseToWords()) // "Pattonium Kit Is The Best"
 
 // Wildcard match
