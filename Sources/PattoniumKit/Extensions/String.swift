@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  String.swift
+//
 //
 //  Created by Bean John on 27/12/2023.
 //
@@ -22,6 +22,7 @@ extension String {
 		return self.components(separatedBy: .newlines)
 	}
 	
+	// Reference <https://stackoverflow.com/questions/41292671/separating-camelcase-string-into-space-separated-words-in-swift>
 	public func camelCaseToWords() -> String {
 		return self
 			.replacingOccurrences(of: "([a-z])([A-Z](?=[A-Z])[a-z]*)", with: "$1 $2", options: .regularExpression)
