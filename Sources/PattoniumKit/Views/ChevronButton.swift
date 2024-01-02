@@ -9,6 +9,10 @@ import SwiftUI
 
 public struct ChevronButton: View {
 	
+	init(direction: ArrowDirection) {
+		self.direction = direction
+	}
+	
 	public var direction: ArrowDirection
 	
 	public var body: some View {

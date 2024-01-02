@@ -10,6 +10,11 @@ import SwiftUI
 @available(iOS 16, macOS 13.0, *)
 public struct ColorPickerView: View {
 	
+	init(colors: [Color] = [Color.red, Color.orange, Color.green, Color.blue, Color.purple, Color.pink], lineColor: Binding<Color>) {
+		self.colors = colors
+		self._lineColor = lineColor
+	}
+	
 	public var colors: [Color] = [Color.red, Color.orange, Color.green, Color.blue, Color.purple, Color.pink]
 	@Binding var lineColor: Color
 	

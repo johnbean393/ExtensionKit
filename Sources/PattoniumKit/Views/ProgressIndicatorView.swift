@@ -9,6 +9,12 @@ import SwiftUI
 
 public struct ProgressIndicatorView: View {
 	
+	public init(arr: [Any], switchOnTap: Bool = true, index: Binding<Int>) {
+		self.arr = arr
+		self.switchOnTap = switchOnTap
+		self._index = index
+	}
+	
 	public var arr: [Any]
 	public var switchOnTap: Bool
 	@Binding var index: Int
