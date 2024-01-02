@@ -12,6 +12,15 @@ import SwiftUI
 extension Scene {
 	
 	@available(macOS 12, *)
+	public func hiddenTitleBar() -> some Scene {
+		if #available(macOS 13.0, *) {
+			return windowStyle(.hiddenTitleBar)
+		} else {
+			return self
+		}
+	}
+	
+	@available(macOS 12, *)
 	public func windowResizabilityContentSize() -> some Scene {
 		if #available(macOS 13.0, *) {
 			return windowResizability(.contentSize)

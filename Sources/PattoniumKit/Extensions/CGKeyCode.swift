@@ -9,6 +9,7 @@ import Foundation
 import CoreGraphics
 
 #if os(macOS)
+@available(macOS 12.0, *)
 extension CGKeyCode
 {
 	/*
