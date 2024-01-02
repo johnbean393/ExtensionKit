@@ -223,6 +223,6 @@ func getCoreCount() -> Int
 func extractText(url: URL) async throws -> String
 
 // Example usage
-let text: String = await try? TextExtractor.extractText(url: URL(filePath: "/Users/username/Desktop/test.txt"))
+let text: String = try? await TextExtractor.extractText(url: URL(filePath: "/Users/username/Desktop/test.txt"))
 print(text) // "Text in file" 
 ```
