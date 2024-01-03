@@ -78,7 +78,7 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 		let dataStoreUrl: URL = getDataStoreUrl()
 		do {
 			// Load data
-			let rawData: Data = try Data(contentsOf: dataStoreUrl, options: .mappedIfSafe)
+			let rawData: Data = try Data(contentsOf: dataStoreUrl)
 			let rawValues: [Value] = try JSONDecoder().decode([Value].self, from: rawData)
 			values = rawValues
 		} catch {
