@@ -158,7 +158,7 @@ struct ContentView: View {
 }
 ```
 
-### CliTools (macOS only)
+### CliTools (Simple tools for the CLI) (macOS only)
 ```Swift
 // Run a command in the terminal
 func runCommand(command: String) -> String
@@ -170,7 +170,7 @@ print(runCommand(command: "echo 'Hello, World!'")) // "Hello, World!"
 func relaunch(afterDelay seconds: TimeInterval = 5) -> Never
 ```
 
-### FileSystemTools
+### FileSystemTools (Simple tools to manipulate the file system)
 ```Swift
 // Example usage for FileSystemTools
 FileSystemTools.functionName(parameters)
@@ -216,7 +216,7 @@ func isArmProcessor() -> Bool
 func getCoreCount() -> Int
 ```
 
-### TextExtractor (macOS only)
+### TextExtractor (Extracts text from files) (macOS only)
 ```Swift
 // Extract text from a file
 // Supported file formats include txt, rtf, csv, py, swift, doc, docx, docm, pages, pptx, pdf, png, jpg, bmp, jpeg, tiff, webp, heic, and any other file that uses UTF8 encoding
@@ -227,7 +227,7 @@ let text: String = try? await TextExtractor.extractText(url: URL(filePath: "/Use
 print(text) // "Text in file" 
 ```
 
-### ValueDataModel
+### ValueDataModel (Quick Data Models)
 ```Swift
 // Example usage for ValueDataModel
 
