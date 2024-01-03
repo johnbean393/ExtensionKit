@@ -20,9 +20,9 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 		load()
 	}
 	
-	private var appDirName: String
-	private var datastoreName: String
-//	static var shared: ValueDataModel = ValueDataModel()
+	var appDirName: String
+	var datastoreName: String
+
 	@Published var values: [Value] = [] {
 		
 		// Save after change
