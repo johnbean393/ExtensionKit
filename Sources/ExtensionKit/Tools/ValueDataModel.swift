@@ -23,9 +23,9 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 	public var appDirName: String
 	public var datastoreName: String
 
-	@Published var values: [Value] = [] {
+	@Published public var values: [Value] = [] {
 		
-		// Save after change
+		// Autosave after change
 		didSet {
 			save()
 		}
