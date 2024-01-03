@@ -32,7 +32,7 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 		
 	}
 	
-	func checkIfAppDirExists() {
+	public func checkIfAppDirExists() {
 		// Get application directory
 		let appSupportUrl: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
 		let appDirUrl: URL = appSupportUrl.appendingPathComponent(appDirName)
@@ -49,7 +49,7 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 		}
 	}
 	
-	func checkIfDataStoreExists() {
+	public func checkIfDataStoreExists() {
 		// Get datastore url
 		let datastorePath: String = getDataStoreUrl().posixPath()
 		// If app dir does not exist
