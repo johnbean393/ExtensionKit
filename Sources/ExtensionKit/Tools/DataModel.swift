@@ -20,8 +20,8 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 		load()
 	}
 	
-	var appDirName: String
-	var datastoreName: String
+	public var appDirName: String
+	public var datastoreName: String
 
 	@Published var values: [Value] = [] {
 		
