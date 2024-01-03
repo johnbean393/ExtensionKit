@@ -1,5 +1,5 @@
 //
-//  DataModel.swift
+//  ValueDataModel.swift
 //
 //
 //  Created by Bean John on 3/1/2024.
@@ -10,7 +10,7 @@ import SwiftUI
 
 open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equatable {
 	
-	init(appDirName: String = Bundle.main.applicationName ?? Bundle.main.description, datastoreName: String = "\(Bundle.main.applicationName ?? Bundle.main.description)Data") {
+	public init(appDirName: String = Bundle.main.applicationName ?? Bundle.main.description, datastoreName: String = "\(Bundle.main.applicationName ?? Bundle.main.description)Data") {
 		// Set path names
 		self.appDirName = appDirName
 		self.datastoreName = datastoreName
