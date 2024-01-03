@@ -10,7 +10,7 @@ import Foundation
 extension Bundle {
 	
 	// Application name shown under the application icon.
-	var applicationName: String? {
+	public var applicationName: String? {
 		object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
 		object(forInfoDictionaryKey: "CFBundleName") as? String
 	}
