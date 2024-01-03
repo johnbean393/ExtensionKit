@@ -158,7 +158,7 @@ struct ContentView: View {
 }
 ```
 
-### CliTools (Simple tools for the CLI) (macOS only)
+### CliTools: Simple tools for the CLI (macOS only)
 ```Swift
 // Run a command in the terminal
 func runCommand(command: String) -> String
@@ -170,7 +170,7 @@ print(runCommand(command: "echo 'Hello, World!'")) // "Hello, World!"
 func relaunch(afterDelay seconds: TimeInterval = 5) -> Never
 ```
 
-### FileSystemTools (Simple tools to manipulate the file system)
+### FileSystemTools: Simple tools to manipulate the file system
 ```Swift
 // Example usage for FileSystemTools
 FileSystemTools.functionName(parameters)
@@ -204,7 +204,7 @@ func openDirectory(url: URL)
 func airDropFiles(urls: [URL]) throws
 ```
 
-### ProcessorTools
+### ProcessorTools: Quickly retrieve information about the processor
 ```Swift
 // Example usage for ProcessorTools
 ProcessorTools.functionName(parameters)
@@ -216,7 +216,7 @@ func isArmProcessor() -> Bool
 func getCoreCount() -> Int
 ```
 
-### TextExtractor (Extracts text from files) (macOS only)
+### TextExtractor: Extract text from a file (macOS only)
 ```Swift
 // Extract text from a file
 // Supported file formats include txt, rtf, csv, py, swift, doc, docx, docm, pages, pptx, pdf, png, jpg, bmp, jpeg, tiff, webp, heic, and any other file that uses UTF8 encoding
@@ -227,7 +227,7 @@ let text: String = try? await TextExtractor.extractText(url: URL(filePath: "/Use
 print(text) // "Text in file" 
 ```
 
-### ValueDataModel (Quick Data Models)
+### ValueDataModel: Make data models without the boilerplate code
 ```Swift
 // Example usage for ValueDataModel
 
@@ -238,7 +238,7 @@ import Foundation
 import SwiftUI
 import ExtensionKit
 
-// Custom Balloon struct
+// Custom struct that conforms to Identifiable, Codable and Equatable 
 struct Balloon: Identifiable, Codable, Equatable {
 	
 	var id: UUID = UUID()
