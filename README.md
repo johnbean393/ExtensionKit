@@ -260,7 +260,6 @@ enum BalloonSize: String, CaseIterable, Codable {
 
 //  BalloonData.swift
 
-
 import Foundation
 import ExtensionKit
 
@@ -288,6 +287,7 @@ class BalloonData: ValueDataModel<Balloon> {
 
 //  ValueDataModel_DemoApp.swift
 
+import SwiftUI
 
 @main
 struct ValueDataModel_DemoApp: App {
@@ -305,7 +305,6 @@ struct ValueDataModel_DemoApp: App {
 
 
 //  ContentView.swift
-
 
 import SwiftUI
 
