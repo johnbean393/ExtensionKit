@@ -242,13 +242,11 @@ import ExtensionKit
 struct Balloon: Identifiable, Codable, Equatable {
 	
 	var id: UUID = UUID()
-	var color: Color
 	var size: BalloonSize
 	
 	static func random() -> Balloon {
-		let color: Color = [Color.red, Color.blue, Color.green, Color.orange, Color.pink].randomElement()!
 		let size: BalloonSize = [.small, .medium, .large].randomElement()!
-		return Balloon(color: color, size: size)
+		return Balloon(size: size)
 	}
 	
 }
