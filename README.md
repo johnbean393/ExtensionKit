@@ -226,3 +226,115 @@ func extractText(url: URL) async throws -> String
 let text: String = try? await TextExtractor.extractText(url: URL(filePath: "/Users/username/Desktop/test.txt"))
 print(text) // "Text in file" 
 ```
+
+### ValueDataModel
+```Swift
+// Example usage for ValueDataModel
+
+
+//  Balloon.swift
+
+import Foundation
+import SwiftUI
+import ExtensionKit
+
+// Custom Balloon struct
+struct Balloon: Identifiable, Codable, Equatable {
+	
+	var id: UUID = UUID()
+	var color: Color
+	var size: BalloonSize
+	
+	static func random() -> Balloon {
+		let color: Color = [Color.red, Color.blue, Color.green, Color.orange, Color.pink].randomElement()!
+		let size: BalloonSize = [.small, .medium, .large].randomElement()!
+		return Balloon(color: color, size: size)
+	}
+	
+}
+
+enum BalloonSize: String, CaseIterable, Codable {
+	case small, medium, large
+}
+
+
+//  BalloonData.swift
+
+
+import Foundation
+import ExtensionKit
+
+// Inherit data model boilerplate code from ValueDataModel
+class BalloonData: ValueDataModel<Balloon> {
+	
+	required init(appDirName: String = Bundle.main.applicationName ?? Bundle.main.description, datastoreName: String = "\(Bundle.main.applicationName ?? Bundle.main.description)Data") {
+		super.init(appDirName: appDirName, datastoreName: datastoreName)
+	}
+	
+	// Add new static property
+	static let shared: BalloonData = BalloonData(appDirName: "ValueDataModel Test", datastoreName: "valueDataModelTest")
+	
+	// Add new method
+	func deleteRandom() {
+		if !values.isEmpty {
+			print(0..<values.count)
+			let randIndex: Int = Int.random(in: 0..<values.count)
+			let _ = values.remove(at: randIndex)
+		}
+	}
+	
+}
+
+
+//  ValueDataModel_DemoApp.swift
+
+
+@main
+struct ValueDataModel_DemoApp: App {
+	
+	// Use the object in your app
+	@StateObject private var balloonData: BalloonData = BalloonData()
+	
+    var body: some Scene {
+        WindowGroup {
+			ContentView()
+				.environmentObject(balloonData)
+        }
+    }
+}
+
+
+//  ContentView.swift
+
+
+import SwiftUI
+
+struct ContentView: View {
+	
+	@EnvironmentObject var balloonData: BalloonData
+	
+    var body: some View {
+		VStack(alignment: .leading) {
+			Button("Add Balloon") {
+				withAnimation(.spring()) {
+					balloonData.add(Balloon.random())
+				}
+			}
+			Button("Pop a Balloon") {
+				withAnimation(.spring()) {
+					balloonData.deleteRandom()
+				}
+			}
+			ForEach(balloonData.values) { balloon in
+				BalloonView(balloon: balloon)
+			}
+		}
+    }
+}
+
+#Preview {
+    ContentView()
+}
+// 
+
+```
