@@ -76,7 +76,6 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 	public func load() {
 		// Get datastore url
 		let dataStoreUrl: URL = getDataStoreUrl()
-		print(getDataStoreUrl().posixPath())
 		do {
 			// Load data
 			let rawData: Data = try Data(contentsOf: dataStoreUrl, options: .mappedIfSafe)
