@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import os.log
 
 open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equatable {
 	
@@ -114,6 +115,25 @@ open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equata
 		withAnimation(.spring()) {
 			values.append(value)
 		}
+	}
+	
+	public func clearData() {
+		// Save current data
+		save()
+		// Rename old datastore
+		do {
+			try FileManager.default.moveItem(at: getDataStoreUrl(), to: getDataStoreUrl().deletingLastPathComponent().appendingPathComponent("\(datastoreName)-\(UUID().uuidString).json"))
+		} catch {
+			// If rename failed, delete old datastore
+			do {
+				try FileManager.default.removeItem(at: getDataStoreUrl())
+			} catch {
+				os_log("error = %@", error.localizedDescription)
+			}
+		}
+		// Make new blank datastore
+		values = []
+		save()
 	}
 	
 }
