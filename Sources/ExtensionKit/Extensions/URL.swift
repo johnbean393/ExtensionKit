@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import QuickLookThumbnailing
+import AppKit
 
 enum ListDirectoryError: Error {
 	case notDirectory
@@ -149,6 +151,25 @@ extension URL {
 		return try FileManager.default.contentsOfDirectory(at: self, includingPropertiesForKeys: nil).lazy.reduce(0) {
 			(try $1.resourceValues(forKeys: [.totalFileAllocatedSizeKey])
 				.totalFileAllocatedSize ?? 0) + $0
+		}
+	}
+	
+	public func thumbnail(size: CGSize, scale: CGFloat, completion: @escaping (CGImage) -> Void) {
+		let request = QLThumbnailGenerator.Request(fileAt: self, size: size, scale: scale, representationTypes: .lowQualityThumbnail)
+		QLThumbnailGenerator.shared.generateRepresentations(for: request) { (thumbnail, type, error) in
+			DispatchQueue.main.async {
+				if thumbnail == nil || error != nil {
+					// Handle the error case gracefully.
+					let nsImage: NSImage = NSWorkspace.shared.icon(forFile: self.posixPath())
+					var rect: NSRect = NSRect(origin: CGPoint(x: 0, y: 0), size: nsImage.size)
+					let result: CGImage = nsImage.cgImage(forProposedRect: &rect, context: NSGraphicsContext.current, hints: nil)!
+					completion(result)
+				} else {
+					// Display the thumbnail that you created.
+					let result: CGImage = thumbnail!.cgImage
+					completion(result)
+				}
+			}
 		}
 	}
 	
