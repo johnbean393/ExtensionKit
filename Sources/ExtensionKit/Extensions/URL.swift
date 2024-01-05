@@ -47,6 +47,16 @@ extension URL {
 		}
 	}
 	
+	// Check if directory is empty
+	public func isEmpty() -> Bool {
+		do {
+			let dirContents: [URL] = try self.listDirectory()
+			return dirContents.isEmpty
+		} catch {
+			return true
+		}
+	}
+	
 	// Get last modified date of file
 	public func lastModifiedDate() throws -> Date {
 		do {
