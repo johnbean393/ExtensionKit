@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import os.log
 
-open class ValueDataModel<Value>: ObservableObject where Value: Codable & Equatable {
+open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 	
 	public required init(appDirName: String = Bundle.main.applicationName ?? Bundle.main.description, datastoreName: String = "\(Bundle.main.applicationName ?? Bundle.main.description)Data") {
 		// Set path names
