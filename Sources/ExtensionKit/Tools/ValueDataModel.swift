@@ -84,7 +84,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 			let rawValues: [Value] = try JSONDecoder().decode([Value].self, from: rawData)
 			values = rawValues
 		} catch {
-			print("Failed to load data")
+			os_log("error = %@", error.localizedDescription)
 		}
 	}
 	
@@ -96,7 +96,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 			let rawData: Data = try JSONEncoder().encode(values)
 			try rawData.write(to: dataStoreUrl, options: .atomic)
 		} catch {
-			print("Failed to save data")
+			os_log("error = %@", error.localizedDescription)
 		}
 	}
 	
