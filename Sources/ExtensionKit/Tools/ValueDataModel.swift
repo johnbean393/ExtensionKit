@@ -51,14 +51,21 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 		}
 	}
 	
+	private func makeNewDatastore() {
+		// Make datastore by saving blank data
+		values = []
+		beforeNewDatastore()
+		save()
+		afterNewDatastore()
+	}
+	
 	public func checkIfDataStoreExists() {
 		// Get datastore url
 		let datastorePath: String = getDataStoreUrl().posixPath()
 		// If app dir does not exist
 		if !FileManager.default.fileExists(atPath: datastorePath) {
-			// Make datastore by saving blank data
-			values = []
-			save()
+			// Make datastore
+			makeNewDatastore()
 		}
 	}
 	
@@ -134,8 +141,12 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 			}
 		}
 		// Make new blank datastore
-		values = []
-		save()
+		makeNewDatastore()
 	}
+	
+	
+	// Methods to override to add functionality
+	public func beforeNewDatastore() {  }
+	public func afterNewDatastore() {  }
 	
 }
