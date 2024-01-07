@@ -146,7 +146,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 	
 	
 	// Methods to override to add functionality
-	public func beforeNewDatastore() {  }
-	public func afterNewDatastore() {  }
+	open func beforeNewDatastore() {  }
+	open func afterNewDatastore() {  }
 	
 }
