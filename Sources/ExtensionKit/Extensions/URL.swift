@@ -7,7 +7,9 @@
 
 import Foundation
 import QuickLookThumbnailing
+#if canImport(AppKit)
 import AppKit
+#endif
 
 enum ListDirectoryError: Error {
 	case notDirectory
