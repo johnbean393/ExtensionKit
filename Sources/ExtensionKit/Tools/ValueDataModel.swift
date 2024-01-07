@@ -38,6 +38,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 		let appSupportUrl: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
 		let appDirUrl: URL = appSupportUrl.appendingPathComponent(appDirName)
 		let appDirPath: String = appDirUrl.posixPath()
+		print(appDirPath)
 		// If app dir does not exist
 		if !FileManager.default.fileExists(atPath: appDirPath) {
 			// Make dir
