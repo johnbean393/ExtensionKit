@@ -28,6 +28,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 		
 		// Autosave after change
 		didSet {
+			onValuesChanged()
 			save()
 		}
 		
@@ -148,5 +149,6 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 	// Methods to override to add functionality
 	open func beforeNewDatastore() {  }
 	open func afterNewDatastore() {  }
+	open func onValuesChanged() {  }
 	
 }
