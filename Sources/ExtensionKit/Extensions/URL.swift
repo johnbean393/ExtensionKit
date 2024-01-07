@@ -156,6 +156,8 @@ extension URL {
 		}
 	}
 	
+	#if os(macOS)
+	@available(macOS 10.15, *)
 	public func thumbnail(size: CGSize, scale: CGFloat, completion: @escaping (CGImage) -> Void) {
 		let request = QLThumbnailGenerator.Request(fileAt: self, size: size, scale: scale, representationTypes: .lowQualityThumbnail)
 		QLThumbnailGenerator.shared.generateRepresentations(for: request) { (thumbnail, type, error) in
@@ -174,5 +176,6 @@ extension URL {
 			}
 		}
 	}
+	#endif
 	
 }
