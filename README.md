@@ -29,7 +29,6 @@ func incrementColor(toColor: Color, percentage: Float) -> Color
 // Example usage
 let color: Color = Color.red.incrementColor(toColor: .green, percentage: 0.5) // Gives 50-50 mix between the colors red and green
 ```
-When ExtensionKit is imported, Color automatically conforms to `Codable`
 
 ### Date
 ```Swift
