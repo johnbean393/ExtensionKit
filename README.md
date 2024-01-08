@@ -83,7 +83,7 @@ func camelCaseToWords() -> String
 
 // Example usage
 let camelCase: String = "ExtensionKitIsTheBest"
-print(camelCase.camelCaseToWords()) // "Pattonium Kit Is The Best"
+print(camelCase.camelCaseToWords()) // "Extension Kit Is The Best"
 
 // Wildcard match
 func wildcard(pattern: String) -> Bool
