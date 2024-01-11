@@ -21,6 +21,32 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 		load()
 	}
 	
+	public convenience init(ogDatastoreUrl: URL, appDirName: String = Bundle.main.applicationName ?? Bundle.main.description, datastoreName: String = "\(Bundle.main.applicationName ?? Bundle.main.description)Data") {
+		// Check if directories exist
+		let appSupportUrl: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+		let appDirUrl: URL = appSupportUrl.appendingPathComponent(appDirName)
+		let appDirPath: String = appDirUrl.posixPath()
+		// If app dir does not exist
+		if !FileManager.default.fileExists(atPath: appDirPath) {
+			// Make dir
+			do {
+				try FileManager.default.createDirectory(at: appDirUrl, withIntermediateDirectories: true)
+			} catch {
+				// Failed to make dir, throw fatal error
+				fatalError("Failed to initialize application directory.")
+			}
+		}
+		// Move file into directory
+		let newDatastoreUrl: URL = appDirUrl.appendingPathComponent("\(datastoreName).json")
+		do {
+			try FileManager.default.moveItem(at: ogDatastoreUrl, to: newDatastoreUrl)
+		} catch {
+			fatalError("Failed to move datastore into place.")
+		}
+		// Init with original method
+		self.init(appDirName: appDirName, datastoreName: datastoreName)
+	}
+	
 	public var appDirName: String
 	public var datastoreName: String
 
@@ -34,7 +60,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 		
 	}
 	
-	public func checkIfAppDirExists() {
+	private func checkIfAppDirExists() {
 		// Get application directory
 		let appSupportUrl: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
 		let appDirUrl: URL = appSupportUrl.appendingPathComponent(appDirName)
@@ -60,7 +86,7 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 		afterNewDatastore()
 	}
 	
-	public func checkIfDataStoreExists() {
+	private func checkIfDataStoreExists() {
 		// Get datastore url
 		let datastorePath: String = getDataStoreUrl().posixPath()
 		// If app dir does not exist
