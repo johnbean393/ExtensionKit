@@ -9,11 +9,12 @@ import Foundation
 
 public class DBSCAN<Value: Hashable> {
 	
+	public var id: [UUID]
 	public var data: [Value]
 	public var label: [Value: String]
 	
-	public init(data: [Value])  {
-		
+	public init(id: [UUID], data: [Value])  {
+		self.id = id
 		self.data = data
 		self.label = [Value: String]()
 		for point in self.data {
