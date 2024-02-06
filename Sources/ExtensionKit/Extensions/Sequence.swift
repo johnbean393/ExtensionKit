@@ -11,7 +11,7 @@ extension Sequence {
 	
 	/// Maps through the elements one by one,
 	/// executing the closure for each of them one at a time.
-	func asyncMap<T>(
+	public func asyncMap<T>(
 		_ closure: @Sendable (Element) async throws -> T
 	) async rethrows -> [T] {
 		var array: [T] = []
@@ -25,7 +25,7 @@ extension Sequence {
 	/// Maps through the elements concurrently,
 	/// executing the closure for all the elements at the same time.
 	/// Keeps the order of the elements with the help of the id.
-	func concurrentMap<T, ID>(
+	public func concurrentMap<T, ID>(
 		id identifyingClosure: (Element) -> ID,
 		_ closure: @escaping @Sendable (Element) async throws -> T
 	) async rethrows -> [T] where ID: Equatable {
@@ -55,7 +55,7 @@ extension Sequence where Element: Equatable {
 	/// Maps through the elements concurrently,
 	/// executing the closure for all the elements at the same time.
 	/// Keeps the order of the elements.
-	func concurrentMap<T>(
+	public func concurrentMap<T>(
 		_ closure: @escaping @Sendable (Element) async throws -> T
 	) async rethrows -> [T] {
 		try await self.concurrentMap(id: { $0 }, closure)
