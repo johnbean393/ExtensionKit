@@ -187,11 +187,9 @@ public class FileSystemTools {
 	// Open directory in Finder
 	#if os(macOS)
 	static public func openDirectory(url: URL) {
-		if #available(macOS 13.0, *) {
-			NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.path(percentEncoded: false))
-		} else {
-			NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.path.removingPercentEncoding!)
-		}
+
+			NSWorkspace.shared.activateFileViewerSelecting([url])
+
 	}
 	#endif
 	
