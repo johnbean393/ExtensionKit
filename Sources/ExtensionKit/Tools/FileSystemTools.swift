@@ -184,10 +184,17 @@ public class FileSystemTools {
 	}
 	#endif
 	
+	// Show file in Finder
+	#if os(macOS)
+	static public func showInFinder(url: URL) {
+		NSWorkspace.shared.activateFileViewerSelecting([url])
+	}
+	#endif
+	
 	// Open directory in Finder
 	#if os(macOS)
 	static public func openDirectory(url: URL) {
-		NSWorkspace.shared.activateFileViewerSelecting([url])
+		NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: url.posixPath())
 	}
 	#endif
 	
