@@ -187,9 +187,7 @@ public class FileSystemTools {
 	// Open directory in Finder
 	#if os(macOS)
 	static public func openDirectory(url: URL) {
-
-			NSWorkspace.shared.activateFileViewerSelecting([url])
-
+		NSWorkspace.shared.activateFileViewerSelecting([url])
 	}
 	#endif
 	
