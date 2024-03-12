@@ -32,15 +32,12 @@ struct HoverEffectModifier: ViewModifier {
 					.shadow(color: glowColor, radius: glowRadius / 3)
 					.shadow(color: glowColor, radius: glowRadius / 3)
 					.shadow(color: glowColor, radius: glowRadius / 3)
-					.onHover { hovering in
-						isHovering = hovering
-					}
 			} else {
 				content
-					.onHover { hovering in
-						isHovering = hovering
-					}
 			}
+		}
+		.onHover { hovering in
+			isHovering = hovering
 		}
 	}
 	
