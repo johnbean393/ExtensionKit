@@ -25,7 +25,7 @@ struct HoverEffectModifier: ViewModifier {
 	var animateIn: Double
 	var glowColor: Color
 	var glowRadius: CGFloat
-	@State private var isHovering: Bool = false
+	@State private var isHovering: Bool = true
 	
 	func body(content: Content) -> some View {
 		return Group {
