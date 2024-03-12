@@ -34,15 +34,22 @@ struct HoverEffectModifier: ViewModifier {
 					.shadow(color: glowColor, radius: glowRadius / 3)
 					.shadow(color: glowColor, radius: glowRadius / 3)
 					.shadow(color: glowColor, radius: glowRadius / 3)
+					.onHover { hovering in
+						if isHovering != hovering {
+							withAnimation(.smooth(duration: animateIn)) {
+								isHovering = hovering
+							}
+						}
+					}
 			} else {
 				content
-			}
-		}
-		.onHover { hovering in
-			if isHovering != hovering {
-				withAnimation(.smooth(duration: animateIn)) {
-					isHovering = hovering
-				}
+					.onHover { hovering in
+						if isHovering != hovering {
+							withAnimation(.smooth(duration: animateIn)) {
+								isHovering = hovering
+							}
+						}
+					}
 			}
 		}
 	}
