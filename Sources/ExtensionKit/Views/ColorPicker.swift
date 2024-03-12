@@ -1,5 +1,5 @@
 //
-//  ColorPickerView.swift
+//  ColorPicker.swift
 //
 //
 //  Created by Bean John on 2/1/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 16, macOS 13.0, *)
-public struct ColorPickerView: View {
+public struct ColorPicker: View {
 	
 	public init(colors: [Color] = [Color.red, Color.orange, Color.green, Color.blue, Color.purple, Color.pink], lineColor: Binding<Color>) {
 		self.colors = colors
@@ -59,7 +59,7 @@ private struct Constants {
 
 #Preview {
 	if #available(iOS 16, macOS 13, *) {
-		ColorPickerView(lineColor: .constant(Color.blue))
+		ColorPicker(lineColor: .constant(Color.blue))
 	} else {
 		// Fallback on earlier versions
 		Text("Update your dang OS!")
