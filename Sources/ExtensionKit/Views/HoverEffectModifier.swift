@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
 	
-	func glowOnHover(
+	public func glowOnHover(
 		color: Color = Color.accentColor,
 		radius: CGFloat = 10
 	) -> some View {
