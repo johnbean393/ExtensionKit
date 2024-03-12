@@ -17,12 +17,21 @@ extension View {
 		}
 	}
 	
-	public func glow(color: Color = .red, radius: CGFloat = 20) -> some View {
-		self
-			.overlay(self.blur(radius: radius / 6))
-			.shadow(color: color, radius: radius / 3)
-			.shadow(color: color, radius: radius / 3)
-			.shadow(color: color, radius: radius / 3)
+	public func glow(color: Color = .red, radius: CGFloat = 20, blurred: Bool = true) -> some View {
+		return Group {
+			if blurred {
+				self
+					.overlay(self.blur(radius: radius / 6))
+					.shadow(color: color, radius: radius / 3)
+					.shadow(color: color, radius: radius / 3)
+					.shadow(color: color, radius: radius / 3)
+			} else {
+				self
+					.shadow(color: color, radius: radius / 3)
+					.shadow(color: color, radius: radius / 3)
+					.shadow(color: color, radius: radius / 3)
+			}
+		}
 	}
 	
 	public func innerShadow<S: Shape>(using shape: S, angle: Angle = .degrees(0), color: Color = .black, width: CGFloat = 6, blur: CGFloat = 6) -> some View {
