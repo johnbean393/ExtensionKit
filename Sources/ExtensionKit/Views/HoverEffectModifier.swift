@@ -37,7 +37,6 @@ struct HoverEffectModifier: ViewModifier {
 			}
 		}
 		.onHover { hovering in
-			print("hovering: \(hovering)")
 			isHovering = hovering
 		}
 	}
