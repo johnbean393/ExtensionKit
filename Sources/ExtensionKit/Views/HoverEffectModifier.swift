@@ -39,8 +39,10 @@ struct HoverEffectModifier: ViewModifier {
 			}
 		}
 		.onHover { hovering in
-			withAnimation(.smooth(duration: animateIn)) {
-				isHovering = hovering
+			if isHovering != hovering {
+				withAnimation(.smooth(duration: animateIn)) {
+					isHovering = hovering
+				}
 			}
 		}
 	}
