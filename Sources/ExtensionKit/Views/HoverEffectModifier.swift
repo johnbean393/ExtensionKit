@@ -29,7 +29,9 @@ struct HoverEffectModifier: ViewModifier {
 		return Group {
 			if isHovering {
 				content
-					.glow(color: glowColor, radius: glowRadius)
+					.shadow(color: glowColor, radius: glowRadius / 3)
+					.shadow(color: glowColor, radius: glowRadius / 3)
+					.shadow(color: glowColor, radius: glowRadius / 3)
 					.onHover { hovering in
 						isHovering = hovering
 					}
