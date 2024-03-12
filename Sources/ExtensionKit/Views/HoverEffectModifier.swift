@@ -11,16 +11,18 @@ import SwiftUI
 extension View {
 	
 	public func glowOnHover(
+		animateIn: Double = 0.5,
 		color: Color = Color.accentColor,
 		radius: CGFloat = 10
 	) -> some View {
-		ModifiedContent(content: self, modifier: HoverEffectModifier(glowColor: color, glowRadius: radius))
+		ModifiedContent(content: self, modifier: HoverEffectModifier(animateIn: animateIn, glowColor: color, glowRadius: radius))
 	}
 	
 }
 
 struct HoverEffectModifier: ViewModifier {
 	
+	var animateIn: Double
 	var glowColor: Color
 	var glowRadius: CGFloat
 	@State private var isHovering: Bool = false
@@ -32,14 +34,13 @@ struct HoverEffectModifier: ViewModifier {
 					.shadow(color: glowColor, radius: glowRadius / 3)
 					.shadow(color: glowColor, radius: glowRadius / 3)
 					.shadow(color: glowColor, radius: glowRadius / 3)
-					.onHover { hovering in
-						isHovering = hovering
-					}
 			} else {
 				content
-					.onHover { hovering in
-						isHovering = hovering
-					}
+			}
+		}
+		.onHover { hovering in
+			withAnimation(.smooth(duration: animateIn)) {
+				isHovering = hovering
 			}
 		}
 	}
