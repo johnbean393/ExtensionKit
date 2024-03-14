@@ -6,12 +6,22 @@
 //
 
 import Foundation
+#if canImport(AppKit)
 import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 import SwiftUI
+
+#if canImport(AppKit)
+typealias OSWindow = NSWindow
+#elseif canImport(UIKit)
+typealias OSWindow = UIWindow
+#endif
 
 struct WindowAccessor: NSViewRepresentable {
 	
-	@Binding var window: NSWindow?
+	@Binding var window: OSWindow?
 	
 	func makeNSView(context: Context) -> NSView {
 		let view = NSView()
