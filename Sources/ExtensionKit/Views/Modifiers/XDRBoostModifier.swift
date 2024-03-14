@@ -5,7 +5,9 @@
 //  Created by Bean John on 14/3/2024.
 //
 
+#if os(macOS)
 import Foundation
+import AppKit
 import SwiftUI
 
 extension View {
@@ -43,3 +45,4 @@ struct XDRBoostModifier: ViewModifier {
 	}
 	
 }
+#endif

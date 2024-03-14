@@ -5,6 +5,7 @@
 //  Created by Bean John on 14/3/2024.
 //
 
+#if os(macOS)
 import MetalKit
 
 // Metal view displaying static HDR content to enable EDR display mode
@@ -160,4 +161,4 @@ class MetalView: MTKView, MTKViewDelegate {
 	
 	func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) { }
 }
-
+#endif

@@ -5,47 +5,24 @@
 //  Created by Bean John on 14/3/2024.
 //
 
+#if os(macOS)
 import Foundation
-#if canImport(AppKit)
 import AppKit
-#elseif canImport(UIKit)
-import UIKit
-#endif
 import SwiftUI
 
-#if canImport(AppKit)
-typealias OSWindow = NSWindow
-typealias OSView = NSView
-typealias OSViewRepresentable = NSViewRepresentable
-#elseif canImport(UIKit)
-typealias OSWindow = UIWindow
-typealias OSView = UIView
-typealias OSViewRepresentable = UIViewRepresentable
-#endif
-
-struct WindowAccessor: OSViewRepresentable {
+struct WindowAccessor: NSViewRepresentable {
 	
-	@Binding var window: OSWindow?
+	@Binding var window: NSWindow?
 	
-	#if os(macOS)
-	func makeNSView(context: Context) -> OSView {
-		let view = OSView()
+	func makeNSView(context: Context) -> NSView {
+		let view = NSView()
 		DispatchQueue.main.async {
 			self.window = view.window
 		}
 		return view
 	}
 	
-	func updateNSView(_ nsView: OSView, context: Context) {}
-	#elseif os(iOS)
-	func makeUIView(context: Context) -> OSView {
-		let view = OSView()
-		DispatchQueue.main.async {
-			self.window = view.window
-		}
-		return view
-	}
+	func updateNSView(_ nsView: NSView, context: Context) {}
 	
-	func updateUIView(_ nsView: OSView, context: Context) {}
-	#endif
 }
+#endif
