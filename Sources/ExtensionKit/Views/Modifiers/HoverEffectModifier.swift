@@ -16,7 +16,7 @@ extension View {
 	) -> some View {
 		ModifiedContent(content: self, modifier: HoverEffectModifier(glowColor: color, glowRadius: radius))
 	}
-	
+
 }
 
 struct HoverEffectModifier: ViewModifier {
