@@ -12,8 +12,8 @@ import SwiftUI
 
 extension View {
 	
-	public func xdrBoost() -> some View {
-		ModifiedContent(content: self, modifier: XDRBoostModifier())
+	public func xdrBoost(initMsg: String = "XDR") -> some View {
+		ModifiedContent(content: self, modifier: XDRBoostModifier(initMsg: initMsg))
 	}
 	
 }
@@ -21,6 +21,8 @@ extension View {
 struct XDRBoostModifier: ViewModifier {
 	
 	@State private var nsWindow: NSWindow?
+	
+	var initMsg: String
 	
 	func body(content: Content) -> some View {
 		return content
@@ -35,7 +37,7 @@ struct XDRBoostModifier: ViewModifier {
 			if let view = nsWindow?.contentView {
 				// The MTKView instance
 				var metalView: MetalView!
-				metalView = MetalView(frame: view.bounds, frameRate: 1, contrast: 1.0, brightness: 1.0)
+				metalView = MetalView(frame: view.bounds, frameRate: 1, contrast: 1.0, brightness: 1.0, initMsg: initMsg)
 				metalView.autoresizingMask = [.width, .height]
 				view.addSubview(metalView)
 			} else {
