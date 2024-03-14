@@ -24,16 +24,22 @@ struct XDRBoostModifier: ViewModifier {
 		return content
 			.background(WindowAccessor(window: $nsWindow))
 			.onAppear {
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-					if let view = nsWindow?.contentView {
-						// The MTKView instance
-						var metalView: MetalView!
-						metalView = MetalView(frame: view.bounds, frameRate: 1, contrast: 1.0, brightness: 1.0)
-						metalView.autoresizingMask = [.width, .height]
-						view.addSubview(metalView)
-					}
-				}
+				startXdr()
 			}
+	}
+	
+	private func startXdr() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+			if let view = nsWindow?.contentView {
+				// The MTKView instance
+				var metalView: MetalView!
+				metalView = MetalView(frame: view.bounds, frameRate: 1, contrast: 1.0, brightness: 1.0)
+				metalView.autoresizingMask = [.width, .height]
+				view.addSubview(metalView)
+			} else {
+				startXdr()
+			}
+		}
 	}
 	
 }
