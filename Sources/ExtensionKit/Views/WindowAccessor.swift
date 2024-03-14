@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import SwiftUI
 
-struct WindowAccessor: NSViewRepresentable {
+public struct WindowAccessor: NSViewRepresentable {
 	
 	@Binding var window: NSWindow?
 	
