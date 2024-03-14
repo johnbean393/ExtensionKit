@@ -24,7 +24,7 @@ struct XDRBoostModifier: ViewModifier {
 		return content
 			.background(WindowAccessor(window: $nsWindow))
 			.onAppear {
-				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
 					if let view = nsWindow?.contentView {
 						// The MTKView instance
 						var metalView: MetalView!
