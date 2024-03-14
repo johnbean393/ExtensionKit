@@ -15,21 +15,37 @@ import SwiftUI
 
 #if canImport(AppKit)
 typealias OSWindow = NSWindow
+typealias OSView = NSView
+typealias OSViewRepresentable = NSViewRepresentable
 #elseif canImport(UIKit)
 typealias OSWindow = UIWindow
+typealias OSView = UIView
+typealias OSViewRepresentable = UIViewRepresentable
 #endif
 
-struct WindowAccessor: NSViewRepresentable {
+struct WindowAccessor: OSViewRepresentable {
 	
 	@Binding var window: OSWindow?
 	
-	func makeNSView(context: Context) -> NSView {
-		let view = NSView()
+	#if os(macOS)
+	func makeNSView(context: Context) -> OSView {
+		let view = OSView()
 		DispatchQueue.main.async {
 			self.window = view.window
 		}
 		return view
 	}
 	
-	func updateNSView(_ nsView: NSView, context: Context) {}
+	func updateNSView(_ nsView: OSView, context: Context) {}
+	#elseif os(iOS)
+	func makeUIView(context: Context) -> OSView {
+		let view = OSView()
+		DispatchQueue.main.async {
+			self.window = view.window
+		}
+		return view
+	}
+	
+	func updateUIView(_ nsView: OSView, context: Context) {}
+	#endif
 }
