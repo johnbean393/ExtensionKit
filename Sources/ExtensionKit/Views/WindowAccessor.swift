@@ -14,7 +14,7 @@ public struct WindowAccessor: NSViewRepresentable {
 	
 	@Binding var window: NSWindow?
 	
-	func makeNSView(context: Context) -> NSView {
+	public func makeNSView(context: Context) -> NSView {
 		let view = NSView()
 		DispatchQueue.main.async {
 			self.window = view.window
@@ -22,7 +22,7 @@ public struct WindowAccessor: NSViewRepresentable {
 		return view
 	}
 	
-	func updateNSView(_ nsView: NSView, context: Context) {}
+	public func updateNSView(_ nsView: NSView, context: Context) {}
 	
 }
 #endif
