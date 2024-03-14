@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  HoverEffectModifier.swift
 //  
 //
 //  Created by Bean John on 12/3/2024.
@@ -23,6 +23,7 @@ struct HoverEffectModifier: ViewModifier {
 	
 	var glowColor: Color
 	var glowRadius: CGFloat
+	
 	@State private var isHovering: Bool = false
 	
 	func body(content: Content) -> some View {
@@ -40,4 +41,3 @@ struct HoverEffectModifier: ViewModifier {
 	}
 	
 }
-
