@@ -5,7 +5,6 @@
 //  Created by Bean John on 14/3/2024.
 //
 
-import Cocoa
 import MetalKit
 
 // Metal view displaying static HDR content to enable EDR display mode
