@@ -25,8 +25,8 @@ struct LoupeModifier: ViewModifier {
 	
 	func body(content: Content) -> some View {
 		return content
-			.visualEffect { ui, geometryProxy in
-				ui
+			.visualEffect { content, geometryProxy in
+				content
 					.layerEffect(
 						ShaderLibrary.loupe(
 							.float2(geometryProxy.size),
