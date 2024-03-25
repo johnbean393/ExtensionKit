@@ -15,7 +15,7 @@ using namespace metal;
 	float2 center = touch / s;
 	float2 delta = uv - center;
 	float aspectRatio = s.x / s.y;
-	float distance = (delta.x * delta.x) + (delta.y * delta.y) / aspectRatio;
+	float distance = (delta.x * delta.x) + (delta.y * delta.y) / (aspectRatio * aspectRatio);
 	float totalZoom = 1;
 	if (distance < maxDistance) {
 		totalZoom /= 2;
@@ -24,4 +24,3 @@ using namespace metal;
 	float2 newPos = delta * totalZoom + center;
 	return l.sample(newPos * s);
 }
-
