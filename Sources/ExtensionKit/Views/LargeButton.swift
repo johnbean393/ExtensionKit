@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-struct LargeButton: View {
+public struct LargeButton: View {
 
-	init(_ label: String, color: Color = Color.accentColor, action: @escaping () -> Void) {
+	public init(_ label: String, color: Color = Color.accentColor, action: @escaping () -> Void) {
 		self.label = label
 		self.color = color
 		self.action = action
 	}
 	
-	init(label: String, color: Color = Color.accentColor, action: @escaping () -> Void) {
+	public init(label: String, color: Color = Color.accentColor, action: @escaping () -> Void) {
 		self.label = label
 		self.color = color
 		self.action = action
 	}
 	
-	var label: String
-	var color: Color
-	var action: () -> Void
+	public var label: String
+	public var color: Color
+	public var action: () -> Void
 	
-	var body: some View {
+	public var body: some View {
 		Text(label)
 			.bold()
 			.padding(8)
