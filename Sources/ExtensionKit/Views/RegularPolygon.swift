@@ -9,6 +9,10 @@ import SwiftUI
 
 public struct RegularPolygon: Shape {
 	
+	public init(sides: Int) {
+		self.sides = sides
+	}
+	
 	public var sides: Int
 	
 	public func path(in rect: CGRect) -> Path {
