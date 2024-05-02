@@ -10,10 +10,10 @@ import SwiftUI
 #if os(macOS)
 @available(macOS 13.0, *)
 public struct CaptureView<Content: View>: View {
-
-	@Binding var productDir: URL
-	@Binding var filename: String
-	var content: () -> Content
+	
+	@Binding public var productDir: URL
+	@Binding public var filename: String
+	public var content: () -> Content
 	
 	public var body: some View {
 		VStack {
