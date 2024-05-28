@@ -352,4 +352,28 @@ extension String {
 		return ([first] + rest).joined()
 	}
 	
+	public func indexInt(of char: Character) -> Int? {
+		return firstIndex(of: char)?.utf16Offset(in: self)
+	}
+	
+	public func removeBrackets() -> String? {
+		// Copy string
+		var result: String = self
+		// Replace front
+		if self.indexInt(of: "(") != nil {
+			result = String(result.dropFirst(self.indexInt(of: "(")! + 1))
+		} else {
+			return nil
+		}
+		// Replace end
+		if result.indexInt(of: ")") != nil {
+			let dropCount: Int = result.count - result.indexInt(of: ")")!
+			result = String(result.dropLast(dropCount))
+		} else {
+			return nil
+		}
+		// Return result
+		return result
+	}
+	
 }
