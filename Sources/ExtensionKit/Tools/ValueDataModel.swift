@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import os.log
 
-open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
+open class ValueDataModel<Value: Codable & Equatable & Identifiable>: ObservableObject {
 	
 	public required init(appDirName: String = Bundle.main.applicationName ?? Bundle.main.description, datastoreName: String = "\(Bundle.main.applicationName ?? Bundle.main.description)Data") {
 		// Set path names
@@ -150,6 +150,27 @@ open class ValueDataModel<Value: Codable & Equatable>: ObservableObject {
 	public func add(_ value: Value) {
 		withAnimation(.spring()) {
 			values.append(value)
+		}
+	}
+	
+	public func update(_ value: Value) {
+		withAnimation(.spring()) {
+			for valueIndex in self.values.indices {
+				if value.id == self.values[valueIndex].id {
+					self.values[valueIndex] = value
+				}
+			}
+		}
+	}
+	
+	public func update(_ value: Binding<Value>) {
+		withAnimation(.spring()) {
+			let rawValue: Value = value as! Value
+			for valueIndex in self.values.indices {
+				if rawValue.id == self.values[valueIndex].id {
+					self.values[valueIndex] = rawValue
+				}
+			}
 		}
 	}
 	
