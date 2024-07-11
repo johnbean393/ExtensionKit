@@ -158,6 +158,7 @@ open class ValueDataModel<Value: Codable & Equatable & Identifiable>: Observable
 			for valueIndex in self.values.indices {
 				if value.id == self.values[valueIndex].id {
 					self.values[valueIndex] = value
+					break
 				}
 			}
 		}
@@ -169,6 +170,7 @@ open class ValueDataModel<Value: Codable & Equatable & Identifiable>: Observable
 			for valueIndex in self.values.indices {
 				if rawValue.id == self.values[valueIndex].id {
 					self.values[valueIndex] = rawValue
+					break
 				}
 			}
 		}
